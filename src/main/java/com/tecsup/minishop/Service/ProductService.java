@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
-
+    private static final double PRECIO_MINIMO = 0.0;
     private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
@@ -16,7 +16,7 @@ public class ProductService {
     }
 
     public Product save(Product product) {
-        if (product.getPrice() <= 0) {
+        if (product.getPrice() <= PRECIO_MINIMO) {
             throw new IllegalArgumentException("El precio debe ser mayor a cero");
         }
         if (product.getStock() < 0) {
